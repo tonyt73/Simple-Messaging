@@ -14,6 +14,10 @@ Note: This implementation is not thread safe
 
 ## Usage
 
+### How to use
+Simply copy the ```Messaging``` folder into your project folder and ```#include "Messaging.h"``` in any file you want to access the messaging system.
+**Note:** Do not add the header to your pre-compiled header as it contains code and is not compatible with the PCH system.
+
 ### Create a Custom Message
 Simply define a new ```class``` with the data you would like to capture.
 ```c++
