@@ -1,0 +1,80 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 451
+  ClientWidth = 590
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Edit1: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    Anchors = [akLeft, akTop, akRight]
+    TabOrder = 0
+    Position.X = 16.000000000000000000
+    Position.Y = 16.000000000000000000
+    Size.Width = 562.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    OnKeyDown = Edit1KeyDown
+  end
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Position.X = 16.000000000000000000
+    Position.Y = 112.000000000000000000
+    Size.Width = 281.000000000000000000
+    Size.Height = 327.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Viewport.Width = 277.000000000000000000
+    Viewport.Height = 323.000000000000000000
+  end
+  object NumberBox1: TNumberBox
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 4
+    Cursor = crIBeam
+    Min = -1000000.000000000000000000
+    Max = 10000000.000000000000000000
+    ValueType = Float
+    Position.X = 16.000000000000000000
+    Position.Y = 48.000000000000000000
+    Size.Width = 113.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    OnChange = NumberBox1Change
+  end
+  object CheckBox1: TCheckBox
+    Position.X = 152.000000000000000000
+    Position.Y = 56.000000000000000000
+    TabOrder = 5
+    Text = 'CheckBox1'
+    OnChange = CheckBox1Change
+  end
+  object Button1: TButton
+    Position.X = 328.000000000000000000
+    Position.Y = 56.000000000000000000
+    Size.Width = 137.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 7
+    Text = 'Button1'
+    OnClick = Button1Click
+  end
+  object Memo2: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Position.X = 312.000000000000000000
+    Position.Y = 112.000000000000000000
+    Size.Width = 265.000000000000000000
+    Size.Height = 327.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Viewport.Width = 261.000000000000000000
+    Viewport.Height = 323.000000000000000000
+  end
+end

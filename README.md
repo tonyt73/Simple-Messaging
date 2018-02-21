@@ -1,7 +1,7 @@
 # Simple-Messaging
 **A lightweight synchronous messaging/event system for Rad Studio C++ Builder using C++11**
 
-##Overview
+## Overview
 This is a simple messaging system designed for use with MVVM, MVC, MVP applications.
 The goal was to make it easy to define new messages/events and to deliver them to 
 multiple subscribers.
@@ -12,7 +12,7 @@ peek on all of the messages sent. A feature I had no use for.
 
 Note: This implementation is not thread safe
 
-##Usage
+## Usage
 
 ### Create a Custom Message
 Simply define a new ```class``` with the data you would like to capture.

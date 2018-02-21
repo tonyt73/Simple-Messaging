@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{65FBD96F-0178-4FEC-A0AD-02B9B1413C2F}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Mesagging Demo.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Mesagging Demo">
+        <MSBuild Projects="Mesagging Demo.cbproj"/>
+    </Target>
+    <Target Name="Mesagging Demo:Clean">
+        <MSBuild Projects="Mesagging Demo.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Mesagging Demo:Make">
+        <MSBuild Projects="Mesagging Demo.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Mesagging Demo"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Mesagging Demo:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Mesagging Demo:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
