@@ -1,4 +1,4 @@
-# Simple-Messaging
+# Simple Messaging system for Rad Studio C++ Builder
 **A lightweight synchronous messaging/event system for Rad Studio C++ Builder using C++11**
 
 ## Overview
