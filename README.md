@@ -41,7 +41,7 @@ public:
 ```
 
 ### Publish a message
-Simply call ```Publish<T>() with an instantiation of your message type and data items set.
+Simply call ```Publish<T>()``` with an instantiation of your message type and data items set.
 ```c++
 void Button1::OnClick()
 {
