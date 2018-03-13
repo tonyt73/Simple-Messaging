@@ -6,10 +6,12 @@
 #include <memory>
 #include <unordered_map>
 #include <functional>
+#include <algorithm>
 #include <typeindex>
 #include <typeinfo>
 #include <type_traits>
 //---------------------------------------------------------------------------
+using namespace std;
 namespace Messaging
 {
 class Bus
@@ -49,11 +51,11 @@ public:
         auto& subscriptions = (*handlers)[typeid(T)];
         if (subscriptions == nullptr)
         {
-            subscriptions = std::make_unique<Subscriptions>();
+            subscriptions = make_unique<Subscriptions>();
             (*handlers)[typeid(T)] = std::move(subscriptions);
         }
 
-        auto subscription = std::make_unique<Subscription<T>>(handler);
+        auto subscription = make_unique<Subscription<T>>(handler);
         subscriptions->push_back(std::move(subscription));
     }
 
@@ -64,10 +66,10 @@ public:
         const std::unique_ptr<Subscriptions>& subscriptions = (*handlers)[typeid(T)];
         if (subscriptions != nullptr)
         {
-            auto& subscription = std::find(subscriptions->begin(), subscriptions->end(), handler);
-            if (subscription != nullptr)
+            const auto& subscription = find(subscriptions->begin(), subscriptions->end(), handler);
+            if (subscription != subscriptions->end())
             {
-                subscriptions->remove(subscription);
+                subscriptions->erase(subscription);
             }
         }
     }
