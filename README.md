@@ -31,7 +31,7 @@ public:
     __fastcall MyMessage(const String& id, int value, bool flag)
     : Event(id)
     , m_Value(value)
-	, m_Flag(flag)
+    , m_Flag(flag)
     {
     }
 
