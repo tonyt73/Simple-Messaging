@@ -4,5 +4,7 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 //---------------------------------------------------------------------------
-auto ::Messaging::Bus::handlers = new ::Messaging::Bus::SubscriptionsMap();
+#if defined(_WIN32) || defined(__APPLE__) || defined(__linux__)
+auto ::Messaging::Bus::m_Handlers = new ::Messaging::Bus::SubscriptionsMap();
+#endif // defined(_WIN32) || defined(__APPLE__) || defined(__linux__)
 //---------------------------------------------------------------------------
