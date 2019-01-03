@@ -105,7 +105,6 @@ public:
             for (const auto& subscription : *subscriptions)
             {
                 ((Subscription<T>*)(subscription.get()))->Execute(message);
-//                ((Subscription<T>*)(subscription))->Execute(message);
             }
         }
     }
