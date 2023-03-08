@@ -2,7 +2,6 @@
 #ifndef MessagingH
 #define MessagingH
 //---------------------------------------------------------------------------
-#if defined(_WIN32) || defined(__APPLE__) || defined(__linux__)
 #include <assert.h>
 #include <list>
 #include <memory>
@@ -13,9 +12,10 @@
 #include <typeinfo>
 #include <type_traits>
 //---------------------------------------------------------------------------
-using namespace std;
 namespace Messaging
 {
+using namespace std;
+
 class Bus
 {
 friend class Registrar;
@@ -26,11 +26,11 @@ private:
     class Subscription_
     {
     private:
-        unsigned int    m_SubscriptionId;
+        unsigned int            m_SubscriptionId;
 
     public:
-                        Subscription_(unsigned int id) : m_SubscriptionId(id) {};
-        virtual        ~Subscription_() {};
+                                Subscription_(unsigned int id) : m_SubscriptionId(id) {}
+        virtual                ~Subscription_() {}
 
         __property unsigned int SubscriptionId = { read = m_SubscriptionId };
     };
@@ -50,14 +50,7 @@ private:
 
         void Execute(const T& message)
         {
-            if (m_Handler)
-            {
-                m_Handler(message);
-            }
-            else
-            {
-                assert("Handler is invalid");
-            }
+            m_Handler(message);
         }
     };
 
@@ -71,14 +64,12 @@ protected:
     template <class T>
     static unsigned int Subscribe(const std::function<void (const T&)>& handler)
     {
-        if (s_Handlers == nullptr)
-        {
+        if (s_Handlers == nullptr) {
             s_Handlers = new SubscriptionsMap();
         }
 
         auto& subscriptions = (*s_Handlers)[typeid(T)];
-        if (subscriptions == nullptr)
-        {
+        if (subscriptions == nullptr) {
             // add a new subscriptions list to the type handlers list
             subscriptions = make_unique<Subscriptions>();
             (*s_Handlers)[typeid(T)] = std::move(subscriptions);
@@ -97,14 +88,12 @@ public:
     template <class T>
     static void Publish(const T& message)
     {
-        if (s_Handlers == nullptr)
-            return;
-        auto& subscriptions = (*s_Handlers)[typeid(T)];
-        if (subscriptions != nullptr)
-        {
-            for (const auto& subscription : *subscriptions)
-            {
-                ((Subscription<T>*)(subscription.get()))->Execute(message);
+        if (s_Handlers) {
+            auto& subscriptions = (*s_Handlers)[typeid(T)];
+            if (subscriptions != nullptr) {
+                for (const auto& subscription : *subscriptions) {
+                    (reinterpret_cast<Subscription<T>*>(subscription.get()))->Execute(message);
+                }
             }
         }
     }
@@ -116,18 +105,17 @@ private:
     std::list<unsigned int> m_SubscriptionIds;
 
 public:
-            __fastcall  Registrar();
-            __fastcall ~Registrar();
+                            Registrar();
+                           ~Registrar();
 
     template <class T>
-    void    __fastcall  Subscribe(std::function<void (const T&)> handler)
-    {
+    void Subscribe(std::function<void (const T&)> handler) {
         m_SubscriptionIds.push_back(::Messaging::Bus::Subscribe(handler));
     }
-    void    __fastcall  Unsubscribe();
+    void Unsubscribe();
 };
 //---------------------------------------------------------------------------
 } // namespace Messaging
 //---------------------------------------------------------------------------
-#endif // defined(_WIN32) || defined(__APPLE__) || defined(__linux__)
 #endif
+

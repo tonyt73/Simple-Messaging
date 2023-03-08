@@ -6,5 +6,7 @@
 *.d
 *.o
 *.exe
+*.bak
 Win64/
 *.local
+__astcache/*

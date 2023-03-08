@@ -40,6 +40,7 @@ object Form1: TForm1
     Min = -1000000.000000000000000000
     Max = 10000000.000000000000000000
     ValueType = Float
+    KeyboardType = NumbersAndPunctuation
     Position.X = 16.000000000000000000
     Position.Y = 48.000000000000000000
     Size.Width = 113.000000000000000000
